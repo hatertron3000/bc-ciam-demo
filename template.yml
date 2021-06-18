@@ -1,0 +1,89 @@
+Resources:
+# This is the SAM template that represents the architecture of your serverless application
+# https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-basics.html
+
+# The AWSTemplateFormatVersion identifies the capabilities of the template
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/format-version-structure.html
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  bc-ciam-demo
+
+# Transform section specifies one or more macros that AWS CloudFormation uses to process your template
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/transform-section-structure.html
+Transform:
+- AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Runtime: nodejs12.x
+    Timeout: 30
+    MemorySize: 128
+  Api:
+    Cors:
+      AllowMethods: "'PUT'"
+      AllowOrigin: "'!Ref DOMAIN'"
+
+Parameters:
+  CUSTOMERATTRIBUTE:
+    Description: 'Required: The attribute name to create/query in BigCommerce'
+    Type: 'String'
+  STOREHASH:
+    Description: 'Required: The store hash for the BigCommerce store'
+    Type: 'String'
+  TOKEN:
+    Description: 'Required: The API token for the BigCommerce store'
+    Type: 'String'
+  CLIENTID:
+    Description: 'Required: The client ID matching the token/secret for the BigCommerce store'
+    Type: 'String'
+  CLIENTSECRET:
+    Description: 'Required: The client secret matching the token/client id for the BigCommerce store'
+    Type: 'String'
+  DOMAIN:
+    Description: 'Required: The domain for the BigCommerce storefront to enable CORS'
+    Type: 'String'
+
+Resources:
+  PetsApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Auth:
+        Authorizers:
+          BigCommerceCustomerAuthorizerLambda:
+            FunctionArn: !GetAtt AuthFunction.Arn
+            FunctionPayloadType: TOKEN
+            Identity:
+              Header: X-Current-Customer
+              ReauthorizeEvery: 0
+        DefaultAuthorizer: BigCommerceCustomerAuthorizerLambda
+
+  PetsLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/pets-lambda.petsLambdaHandler
+      Description: A Lambda function that returns a static string.
+      Environment:
+          Variables:
+            STORE_HASH: !Ref STOREHASH
+            TOKEN: !Ref TOKEN
+            CLIENT_ID: !Ref CLIENTID
+            CUSTOMER_ATTRIBUTE: !Ref CUSTOMERATTRIBUTE
+      Events:
+        PutRoot:
+          Type: Api
+          Properties:
+            RestApiId: !Ref PetsApi
+            Path: /
+            Method: put
+
+  AuthFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/auth-function.authHandler
+      Description: An API Gateway Authorizer that authorizes access using a Current Customer JWT from BigCommerce
+      Environment:
+        Variables:
+          STORE_HASH: !Ref STOREHASH
+          CLIENT_ID: !Ref CLIENTID
+          CLIENT_SECRET: !Ref CLIENTSECRET

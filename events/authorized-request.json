@@ -1,0 +1,129 @@
+{
+    "resource": "/",
+    "path": "/",
+    "httpMethod": "PUT",
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-Country": "US",
+        "Content-Type": "application/json",
+        "Host": "<API_ID>>.execute-api.<REGION>.amazonaws.com",
+        "Postman-Token": "300aca0b-867c-4b8e-85c3-865df4f25978",
+        "User-Agent": "PostmanRuntime/7.28.0",
+        "Via": "1.1 19934e8c827f304089a6e45a640882cd.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "Tw6ljsaCG5OXJ_PJmU8MCTBb7PG2LbE-gw1AZgaOHdWP9btwuvJofQ==",
+        "X-Amzn-Trace-Id": "Root=1-60ca66f3-31eb0d926576662617f5fbeb",
+        "X-Current-Customer": "<CURRENT_CUSTOMER_TOKEN>",
+        "X-Forwarded-For": "<SHOPPER_IP>, <CLOUDFRONT_IP>",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "multiValueHeaders": {
+        "Accept": [
+            "*/*"
+        ],
+        "Accept-Encoding": [
+            "gzip, deflate, br"
+        ],
+        "CloudFront-Forwarded-Proto": [
+            "https"
+        ],
+        "CloudFront-Is-Desktop-Viewer": [
+            "true"
+        ],
+        "CloudFront-Is-Mobile-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-SmartTV-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-Tablet-Viewer": [
+            "false"
+        ],
+        "CloudFront-Viewer-Country": [
+            "US"
+        ],
+        "Content-Type": [
+            "application/json"
+        ],
+        "Host": [
+            "<API_ID>>.execute-api.<REGION>.amazonaws.com"
+        ],
+        "Postman-Token": [
+            "300aca0b-867c-4b8e-85c3-865df4f25978"
+        ],
+        "User-Agent": [
+            "PostmanRuntime/7.28.0"
+        ],
+        "Via": [
+            "1.1 19934e8c827f304089a6e45a640882cd.cloudfront.net (CloudFront)"
+        ],
+        "X-Amz-Cf-Id": [
+            "Tw6ljsaCG5OXJ_PJmU8MCTBb7PG2LbE-gw1AZgaOHdWP9btwuvJofQ=="
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=1-60ca66f3-31eb0d926576662617f5fbeb"
+        ],
+        "X-Current-Customer": [
+            "<CURRENT_CUSTOMER_TOKEN>"
+        ],
+        "X-Forwarded-For": [
+            "<SHOPPER_IP>, <CLOUDFRONT_IP>"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ]
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "upj1r60gth",
+        "authorizer": {
+            "store_hash": "iu88q6epfh",
+            "bcCustomerGroupId": "1",
+            "bcCustomerEmail": "<CUSTOMER_EMAIL_ADDRESS>",
+            "principalId": "user",
+            "integrationLatency": 59,
+            "bcCustomerId": "1"
+        },
+        "resourcePath": "/",
+        "httpMethod": "PUT",
+        "extendedRequestId": "BCUGHHH6IAMFRAg=",
+        "requestTime": "16/Jun/2021:21:02:43 +0000",
+        "path": "/Stage/",
+        "accountId": "<ACCOUNT_ID>",
+        "protocol": "HTTP/1.1",
+        "stage": "Stage",
+        "domainPrefix": "<API_ID>>",
+        "requestTimeEpoch": 1623877363786,
+        "requestId": "62a62d68-9938-4e32-a48c-94c6cad6f44c",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "sourceIp": "<SHOPPER_IP>",
+            "principalOrgId": null,
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "PostmanRuntime/7.28.0",
+            "user": null
+        },
+        "domainName": "<API_ID>>.execute-api.<REGION>.amazonaws.com",
+        "apiId": "<API_ID>>"
+    },
+    "body": "[\n    {\n        \"name\": \"Duncan\",\n        \"type\": \"dog\",\n        \"note\": \"He is a very good boy\"\n    },\n    {\n        \"name\": \"Miss Kitty\",\n        \"type\": \"cat\",\n        \"note\": \"She is a very grumpy kitty\"\n    }\n]",
+    "isBase64Encoded": false
+}

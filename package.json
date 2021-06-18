@@ -1,0 +1,17 @@
+{
+    "name": "bc-ciam-demo",
+    "description": "bc-ciam-demo",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "jsonwebtoken": "^8.5.1",
+        "node-bigcommerce": "^4.1.0"
+    },
+    "devDependencies": {
+        "aws-sdk": "^2.815.0"
+    },
+    "scripts": {
+        "api": "sam local start-api --env-vars env.json",
+        "invoke:PetsLambdaFunction": "sam local invoke -e events/authorized-request.json --env-vars env.json PetsLambdaFunction"
+    }
+}
