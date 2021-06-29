@@ -47,7 +47,7 @@ exports.petsLambdaHandler = async (event) => {
             statusCode: 200,
             headers: {
                 "content-type": "application/json",
-                "Access-Control-Allow-Origin": `https://${process.env.CORS_URL}`,
+                "Access-Control-Allow-Origin": process.env.CORS_URL,
                 "Access-Control-Allow-Methods": "PUT,OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type, X-Current-Customer, Accept"
             },
@@ -64,7 +64,7 @@ exports.petsLambdaHandler = async (event) => {
             statusCode: 500,
             headers: {
                 "content-type": "application/json",
-                "Access-Control-Allow-Origin": `https://${process.env.CORS_URL}`,
+                "Access-Control-Allow-Origin": process.env.CORS_URL,
                 "Access-Control-Allow-Methods": "PUT,OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type, X-Current-Customer, Accept"
             },

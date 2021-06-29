@@ -23,7 +23,9 @@ Globals:
     Cors:
       AllowMethods: "'PUT,OPTIONS'"
       AllowHeaders: "'X-Current-Customer, Accept, Content-Type'"
-      AllowOrigin: !Ref URL
+      AllowOrigin: !Sub
+        - "'${URL}'"
+        - { URL: !Ref URL }
 
 
 Parameters:
