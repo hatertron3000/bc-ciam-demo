@@ -46,7 +46,10 @@ exports.petsLambdaHandler = async (event) => {
         const response = {
             statusCode: 200,
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                "Access-Control-Allow-Origin": `https://${process.env.CORS_URL}`,
+                "Access-Control-Allow-Methods": "PUT,OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, X-Current-Customer, Accept"
             },
             body: JSON.stringify(data)
         };
@@ -60,7 +63,10 @@ exports.petsLambdaHandler = async (event) => {
         const response = {
             statusCode: 500,
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                "Access-Control-Allow-Origin": `https://${process.env.CORS_URL}`,
+                "Access-Control-Allow-Methods": "PUT,OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, X-Current-Customer, Accept"
             },
             body: JSON.stringify({
                 data: {

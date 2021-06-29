@@ -13,6 +13,7 @@ Description: >-
 Transform:
 - AWS::Serverless-2016-10-31
 
+
 Globals:
   Function:
     Runtime: nodejs12.x
@@ -20,8 +21,10 @@ Globals:
     MemorySize: 128
   Api:
     Cors:
-      AllowMethods: "'PUT'"
-      AllowOrigin: "'!Ref DOMAIN'"
+      AllowMethods: "'PUT,OPTIONS'"
+      AllowHeaders: "'X-Current-Customer, Accept, Content-Type'"
+      AllowOrigin: !Ref URL
+
 
 Parameters:
   CUSTOMERATTRIBUTE:
@@ -39,8 +42,8 @@ Parameters:
   CLIENTSECRET:
     Description: 'Required: The client secret matching the token/client id for the BigCommerce store'
     Type: 'String'
-  DOMAIN:
-    Description: 'Required: The domain for the BigCommerce storefront to enable CORS'
+  URL:
+    Description: 'Required: The URL (including protocol) for the BigCommerce storefront to enable CORS'
     Type: 'String'
 
 Resources:
@@ -57,6 +60,7 @@ Resources:
               Header: X-Current-Customer
               ReauthorizeEvery: 0
         DefaultAuthorizer: BigCommerceCustomerAuthorizerLambda
+        AddDefaultAuthorizerToCorsPreflight: False
 
   PetsLambdaFunction:
     Type: AWS::Serverless::Function
@@ -69,6 +73,7 @@ Resources:
             TOKEN: !Ref TOKEN
             CLIENT_ID: !Ref CLIENTID
             CUSTOMER_ATTRIBUTE: !Ref CUSTOMERATTRIBUTE
+            CORS_URL: !Ref URL
       Events:
         PutRoot:
           Type: Api
