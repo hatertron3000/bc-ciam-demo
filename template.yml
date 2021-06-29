@@ -94,3 +94,8 @@ Resources:
           STORE_HASH: !Ref STOREHASH
           CLIENT_ID: !Ref CLIENTID
           CLIENT_SECRET: !Ref CLIENTSECRET
+
+Outputs:
+  PetsApi:
+    Description: "The endpoint for the My Pets API"
+    Value: !Sub "https://${PetsApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
